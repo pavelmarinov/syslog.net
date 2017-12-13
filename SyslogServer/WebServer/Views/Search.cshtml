@@ -1,0 +1,92 @@
+﻿@using SyslogServer.Core.Model
+@inherits SyslogServer.WebServer.Code.GenericTemplate<SearchModel>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" type="image/png" href="/WebServer/Images/favicon.ico">
+    <link rel="stylesheet" href="/WebServer/Css/Style.css" type="text/css">
+    <title>Messages - Syslog Server</title>
+</head>
+<body>
+    <p class="breadcrumbs"><a href="/syslogview/tagview?host=@Model.MessagesCollection.Host">Tags</a></p>
+    <form method="get" action="/syslogview/search">
+        <fieldset>
+            <legend>Filter</legend>
+            <p><input type="hidden" name="Host" value="@Model.MessagesCollection.Host"><input type="hidden" name="Tag" value="@Model.MessagesCollection.Tag"></p>
+            <label for="Severity">Severity</label>&nbsp;<select id="Severity" name="Severity">
+                <option value="Emergency">Emergency</option>
+                <option value="Alert">Alert</option>
+                <option value="Critical">Critical</option>
+                <option value="Error">Error</option>
+                <option value="Warning">Warning</option>
+                <option value="Notice">Notice</option>
+                <option value="Informational">Informational</option>
+                <option value="Debug">Debug</option>
+                <option value="" selected="selected"></option>
+            </select>&nbsp;
+            <script type="text/javascript">
+                document.getElementById('Severity').value = "@Model.FilterModel.Severity";
+            </script>
+            @{ 
+                string dateTimePattern = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern + " " + System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern;
+                string startTime = Model.FilterModel.StartTime.HasValue ? Model.FilterModel.StartTime.Value.ToString("s") : String.Empty;
+                string endTime = Model.FilterModel.EndTime.HasValue ? Model.FilterModel.EndTime.Value.ToString("s") : String.Empty;
+            }
+            <label for="Text">Text</label>&nbsp;<input type="text" id="Text" name="Text" size="30" value="@Model.FilterModel.Text">&nbsp;&nbsp;
+            <label for="Text">From</label>&nbsp;<input placeholder="@dateTimePattern" type="datetime-local" id="StartTime" name="StartTime" size="30" value="@startTime">&nbsp;&nbsp;
+            <label for="Text">To</label>&nbsp;<input placeholder="@dateTimePattern" type="datetime-local" id="EndTime" name="EndTime" size="30" value="@endTime">&nbsp;&nbsp;
+        </fieldset>
+        <p>
+            <input type="submit" value="Search"><input type="hidden" name="page" value="@Model.PageOptions.Page"><input type="hidden" name="page-size" value="50">
+        </p>
+    </form>
+    @{
+        string prevQuery = String.Format("/syslogview/search?host={0}&tag={1}&page={2}&text={3}&severity={4}&startTime={5}&endTime={6}",Model.MessagesCollection.Host, Model.MessagesCollection.Tag, Model.PageOptions.Page - 1, Model.FilterModel.Text, Model.FilterModel.Severity, startTime, endTime);
+        string nextQuery = String.Format("/syslogview/search?host={0}&tag={1}&page={2}&text={3}&severity={4}&startTime={5}&endTime={6}", Model.MessagesCollection.Host, Model.MessagesCollection.Tag, Model.PageOptions.Page + 1, Model.FilterModel.Text, Model.FilterModel.Severity, startTime, endTime);
+        if(Model.PageOptions.IsFirstPage)
+        {
+            <p><a name="results"></a>&lt;&lt;&nbsp;prev&nbsp;|&nbsp;<a href="@nextQuery">next&nbsp;&gt;&gt;</a>&nbsp;(page @Model.PageOptions.Page of @Model.PageOptions.PageCount)&nbsp;&nbsp;<em>(@Model.MessagesCollection.Messages.Count event(s) total)</em></p>        
+        }
+        else if(Model.PageOptions.IsLastPage)
+        { 
+            <p><a name="results"></a><a href="@prevQuery">&lt;&lt;&nbsp;prev</a>&nbsp;|&nbsp;next&nbsp;&gt;&gt;&nbsp;(page @Model.PageOptions.Page of @Model.PageOptions.PageCount)&nbsp;&nbsp;<em>(@Model.MessagesCollection.Messages.Count event(s) total)</em></p>        
+        }
+        else if(Model.PageOptions.IsSinglePage)
+        {
+            <p><a name="results"></a>&lt;&lt;&nbsp;prev&nbsp;|&nbsp;next&nbsp;&gt;&gt;&nbsp;(page @Model.PageOptions.Page of @Model.PageOptions.PageCount)&nbsp;&nbsp;<em>(@Model.MessagesCollection.Messages.Count event(s) total)</em></p>        
+        }
+        else
+        {
+            <p><a name="results"></a><a href="@prevQuery">&lt;&lt;&nbsp;prev</a>&nbsp;|&nbsp;<a href="@nextQuery">next&nbsp;&gt;&gt;</a>&nbsp;(page @Model.PageOptions.Page of @Model.PageOptions.PageCount)&nbsp;&nbsp;<em>(@Model.MessagesCollection.Messages.Count event(s) total)</em></p>        
+        }
+    }
+
+    
+    <table class="data">
+        <thead>
+            <tr class="hdr">
+                <th class="hdr">&nbsp;</th>
+                <th class="hdr">Timestamp</th>
+                <th class="hdr">Host</th>
+                <th class="hdr">Facility</th>
+                <th class="hdr">Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (SyslogMessage msg in Model.MessagesCollection.Messages)
+            {
+                <tr valign="top" class="@msg.Severity.ToString().ToLower()">
+                    <td class="t">
+                        <img src="/WebServer/Images/@(msg.Severity.ToString().ToLower()).png" width="16" height="16" alt="@msg.Severity.ToString().ToLower()" title="@msg.Severity.ToString().ToLower()">
+                    </td>
+                    <td class="t">@msg.Timestamp.ToString("hh:mm:ss dd/MM/yyyy")</td>
+                    <td class="t">@Model.MessagesCollection.Host</td>
+                    <td class="t">@Model.MessagesCollection.Tag</td>
+                    <td class="text">@msg.Content</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

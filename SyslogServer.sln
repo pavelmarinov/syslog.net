@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyslogServer", "SyslogServer\SyslogServer.csproj", "{89CDC3ED-9FE3-4D9D-BAD9-0FF3AD196734}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyslogServer.Core", "SyslogServer.Core\SyslogServer.Core.csproj", "{3047C62C-E443-4164-B1E2-FD1B48070339}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyslogServer.UnitTests", "SyslogServer.Tests\SyslogServer.UnitTests.csproj", "{C6D0EF78-04FA-4190-9392-C3887A4A024A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89CDC3ED-9FE3-4D9D-BAD9-0FF3AD196734}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89CDC3ED-9FE3-4D9D-BAD9-0FF3AD196734}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89CDC3ED-9FE3-4D9D-BAD9-0FF3AD196734}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89CDC3ED-9FE3-4D9D-BAD9-0FF3AD196734}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3047C62C-E443-4164-B1E2-FD1B48070339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3047C62C-E443-4164-B1E2-FD1B48070339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3047C62C-E443-4164-B1E2-FD1B48070339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3047C62C-E443-4164-B1E2-FD1B48070339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6D0EF78-04FA-4190-9392-C3887A4A024A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6D0EF78-04FA-4190-9392-C3887A4A024A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6D0EF78-04FA-4190-9392-C3887A4A024A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6D0EF78-04FA-4190-9392-C3887A4A024A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73A57B65-109E-4C09-B9A3-DACCE570C523}
+	EndGlobalSection
+EndGlobal

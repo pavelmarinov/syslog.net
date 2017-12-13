@@ -1,0 +1,8 @@
+language: csharp
+solution: SyslogServer.sln
+install:
+  - nuget restore SyslogServer.sln
+  - nuget install NUnit.Runners -Version 3.7.0 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release SyslogServer.sln
+  - mono ./testrunner/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe ./SyslogServer.UnitTests/bin/Release/SyslogServer.UnitTests.dll

@@ -1,0 +1,44 @@
+﻿@using SyslogServer.Core.Model
+@inherits SyslogServer.WebServer.Code.GenericTemplate<HostsCollection>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" type="image/png" href="/WebServer/Images/favicon.ico">
+    <link rel="stylesheet" href="/WebServer/Css/Style.css" type="text/css">
+    <title>Hosts - Syslog Server</title>
+</head>
+<body>
+    <table class="data">
+        <thead>
+            <tr class="hdr">
+                <th class="hdr">Host</th>
+                <th class="hdr"><img src="/WebServer/Images/emergency.png" width="16" height="16" alt="Emergency" title="Emergency"></th>
+                <th class="hdr"><img src="/WebServer/Images/alert.png" width="16" height="16" alt="Alert" title="Alert"></th>
+                <th class="hdr"><img src="/WebServer/Images/critical.png" width="16" height="16" alt="Critical" title="Critical"></th>
+                <th class="hdr"><img src="/WebServer/Images/error.png" width="16" height="16" alt="Error" title="Error"></th>
+                <th class="hdr"><img src="/WebServer/Images/warning.png" width="16" height="16" alt="Warning" title="Warning"></th>
+                <th class="hdr"><img src="/WebServer/Images/notice.png" width="16" height="16" alt="Notice" title="Notice"></th>
+                <th class="hdr"><img src="/WebServer/Images/informational.png" width="16" height="16" alt="Informational" title="Informational"></th>
+                <th class="hdr"><img src="/WebServer/Images/debug.png" width="16" height="16" alt="Debug" title="Debug"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Host host in Model.Hosts)
+            {
+                <tr>
+                    <td class="t"><a href="/syslogview/tagview?host=@host.Name">@host.Name</a></td>
+                    <td class="n emergency">@host.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Emergency)</td>
+                    <td class="n alert">@host.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Alert)</td>
+                    <td class="n critical">@host.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Critical)</td>
+                    <td class="n error">@host.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Error)</td>
+                    <td class="n warning">@host.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Warning)</td>
+                    <td class="n notice">@host.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Notice)</td>
+                    <td class="n informational">@host.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Informational)</td>
+                    <td class="n debug">@host.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Debug)</td>
+                </tr>
+            }
+        </tbody>
+    </table><p><em>(@Model.EventsTotal event(s) total)</em></p>
+</body>
+</html>

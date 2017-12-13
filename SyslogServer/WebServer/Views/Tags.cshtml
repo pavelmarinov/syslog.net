@@ -1,0 +1,53 @@
+﻿@using SyslogServer.Core.Model
+@inherits SyslogServer.WebServer.Code.GenericTemplate<Host>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" type="image/png" href="/WebServer/Images/favicon.ico">
+    <link rel="stylesheet" href="/WebServer/Css/Style.css" type="text/css">
+    <title>Tags - Syslog Server</title>
+</head>
+<body>
+    <p class="breadcrumbs"><a href="/syslogview/hostview">Hosts</a></p>
+    <table class="data">
+        <thead>
+            <tr class="hdr">
+                <th class="hdr">Host</th>
+                <th class="hdr">Facility</th>
+                <th class="hdr">Tag</th>
+                <th class="hdr"><img src="/WebServer/Images/emergency.png" width="16" height="16" alt="Emergency" title="Emergency"></th>
+                <th class="hdr"><img src="/WebServer/Images/alert.png" width="16" height="16" alt="Alert" title="Alert"></th>
+                <th class="hdr"><img src="/WebServer/Images/critical.png" width="16" height="16" alt="Critical" title="Critical"></th>
+                <th class="hdr"><img src="/WebServer/Images/error.png" width="16" height="16" alt="Error" title="Error"></th>
+                <th class="hdr"><img src="/WebServer/Images/warning.png" width="16" height="16" alt="Warning" title="Warning"></th>
+                <th class="hdr"><img src="/WebServer/Images/notice.png" width="16" height="16" alt="Notice" title="Notice"></th>
+                <th class="hdr"><img src="/WebServer/Images/informational.png" width="16" height="16" alt="Informational" title="Informational"></th>
+                <th class="hdr"><img src="/WebServer/Images/debug.png" width="16" height="16" alt="Debug" title="Debug"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                string query;
+                foreach (Tag tag in Model.Tags)
+                {
+                    query = String.Format("/syslogview/search?host={0}&tag={1}", Model.Name, tag.Name);
+                    <tr>
+                        <td class="t">@Model.Name</td>
+                        <td class="t">@tag.Facility</td>
+                        <td class="t"><a href="@query">@tag.Name</a></td>
+                        <td class="n emergency"><a href="@String.Format("{0}&Severity={1}", query, "Emergency")">@tag.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Emergency)</a></td>
+                        <td class="n alert"><a href="@String.Format("{0}&Severity={1}", query, "Alert")">@tag.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Alert)</a></td>
+                        <td class="n critical"><a href="@String.Format("{0}&Severity={1}", query, "Critical")">@tag.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Critical)</a></td>
+                        <td class="n error"><a href="@String.Format("{0}&Severity={1}", query, "Error")">@tag.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Error)</a></td>
+                        <td class="n warning"><a href="@String.Format("{0}&Severity={1}", query, "Warning")">@tag.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Warning)</a></td>
+                        <td class="n notice"><a href="@String.Format("{0}&Severity={1}", query, "Notice")">@tag.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Notice)</a></td>
+                        <td class="n informational"><a href="@String.Format("{0}&Severity={1}", query, "Informational")">@tag.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Informational)</a></td>
+                        <td class="n debug"><a href="@String.Format("{0}&Severity={1}", query, "Debug")">@tag.GetMessageSummaryCount(SyslogServer.Core.Protocol.Severity.Debug)</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table><p><em>(@Model.GetMessageSummaryCount() event(s) total)</em></p>
+</body>
+</html>

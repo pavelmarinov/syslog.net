@@ -1,0 +1,228 @@
+body
+{
+    font-family: sans-serif;
+}
+
+p.ribbon
+{
+    font-weight: bold;
+    background-color: dimgray;
+    margin: -1em;
+    padding: 1em;
+    padding-bottom: 0.75em;
+    margin-bottom: 1em;
+    color: white;
+}
+
+img, img.icon
+{
+    vertical-align: middle;
+    border: 0px;
+}
+
+p, li, th.hdr, th.lbl, td.t, td.n, span.problems, legend, label, input
+{
+    font-family: sans-serif;
+    font-size: 8pt;
+}
+
+legend
+{
+    font-weight: bold;
+}
+
+span.problems
+{
+    float: right;
+    font-weight: bold;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+p.breadcrumbs
+{
+    font-weight: bold;
+    background-color: whitesmoke;
+    margin: -1em;
+    padding: 1em;
+    padding-bottom: 0.75em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid gainsboro;
+}
+
+a
+{
+    color: dodgerblue;
+}
+
+table.data
+{
+    border-left: 1px solid gainsboro;
+    border-top: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+    border-spacing: 0px;
+}
+
+td.t, td.n, td.text
+{
+    border-bottom: 1px solid gainsboro;
+}
+
+caption.hdr, h1.hdr
+{
+    font-family: sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    color: dimgray;
+    text-align: center;
+}
+
+tr.hdr
+{
+}
+
+tr.ftr
+{
+    background-color: gainsboro;
+}
+
+tr.alt0
+{
+    background-color: whitesmoke;
+}
+
+tr.alt1
+{
+    background-color: white;
+}
+
+th.hdr, th.lbl, td.t, td.n, td.text
+{
+    padding-left: 0.5em;
+    padding-top: 0.25em;
+    padding-right: 0.5em;
+    padding-bottom: 0.25em;
+}
+
+th.hdr
+{
+    border-left: 1px solid whitesmoke;
+    border-top: 1px solid whitesmoke;
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+    background-color: gainsboro;
+}
+
+th.lbl
+{
+    text-align: left;
+}
+
+td.t
+{
+    padding-right: 1em;
+}
+
+td.n
+{
+    text-align: right;
+    padding-left: 1em;
+}
+
+pre.t
+{
+    padding: 0.2em;
+    border: 1px solid silver;
+}
+
+.emergency
+{
+    background-color: pink;
+}
+
+.alert
+{
+    background-color: pink;
+}
+
+.critical
+{
+    background-color: mistyrose;
+}
+
+.error
+{
+    background-color: mistyrose;
+}
+
+.warning
+{
+    background-color: lightyellow;
+}
+
+.notice
+{
+}
+
+.informational
+{
+}
+
+.debug
+{
+    color: gray;
+}
+
+.highlight
+{
+    background-color: greenyellow;
+}
+
+.text
+{
+    font-family: monospace;
+    font-size: 8pt;
+}
+
+.hist-ts
+{
+    padding-right: 1em;
+    border-right: 1px solid gainsboro;
+}
+.hist
+{
+    display: inline-block;
+    text-align: right;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    border-top: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+    border-bottom: 1px solid gainsboro;
+}
+
+.hist-mini
+{
+}
+.hist-min
+{
+    font-size: 1px;
+    line-height: 100%;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    border-bottom: 1px solid gainsboro;
+}
+.hist-sect
+{
+    display: inline-block;
+    width: 10px;
+    border-left: 1px solid gainsboro;
+    border-top: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+}
+.hist-tt
+{
+    font-size: 10px;
+    line-height: 200%;
+    position: absolute;
+}

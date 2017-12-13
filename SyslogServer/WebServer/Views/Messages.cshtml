@@ -1,0 +1,39 @@
+﻿@using SyslogServer.Core.Model
+@inherits SyslogServer.WebServer.Code.GenericTemplate<TagMessagesCollection>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" type="image/png" href="/WebServer/Images/favicon.ico">
+    <link rel="stylesheet" href="/WebServer/Css/Style.css" type="text/css">
+    <title>Messages - Syslog Server</title>
+</head>
+<body>
+    <p class="breadcrumbs"><a href="/syslogview/tagview?host=@Model.Host">Tags</a></p>
+    <table class="data">
+        <thead>
+            <tr class="hdr">
+                <th class="hdr">&nbsp;</th>
+                <th class="hdr">Timestamp</th>
+                <th class="hdr">Host</th>
+                <th class="hdr">Facility</th>
+                <th class="hdr">Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (SyslogMessage msg in Model.Messages)
+            {
+                <tr valign="top" class="@msg.Severity.ToString().ToLower()">
+                    <td class="t">
+                        <img src="/WebServer/Images/icon_@(msg.Severity.ToString().ToLower()).png" width="16" height="16" alt="@msg.Severity.ToString().ToLower()" title="@msg.Severity.ToString().ToLower()">
+                    </td>
+                    <td class="t">@msg.Timestamp.ToString("hh:mm:ss dd/MM/yyyy")</td>
+                    <td class="t">@Model.Host</td>
+                    <td class="t">@Model.Tag</td>
+                    <td class="text">@msg.Content</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
