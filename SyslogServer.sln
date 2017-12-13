@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyslogServer", "SyslogServe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyslogServer.Core", "SyslogServer.Core\SyslogServer.Core.csproj", "{3047C62C-E443-4164-B1E2-FD1B48070339}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyslogServer.UnitTests", "SyslogServer.Tests\SyslogServer.UnitTests.csproj", "{C6D0EF78-04FA-4190-9392-C3887A4A024A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyslogServer.UnitTests", "SyslogServer.UnitTests\SyslogServer.UnitTests.csproj", "{C6D0EF78-04FA-4190-9392-C3887A4A024A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
